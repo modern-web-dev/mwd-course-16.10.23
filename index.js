@@ -1,21 +1,36 @@
-const person = {
-    'first-name': 'Marek',
-    age: 0,
-    address: {
-        street: 'Legnicka',
-        city: 'Wrocław'
+class Person {
+    constructor(firstName, age) {
+        this.firstName = firstName;
+        this.age = age;
     }
-};
-person.lastName = 'Matczak';
-delete person['first-name']
-person.lastName = 'Kowalski';
-delete person.address;
-// delete person.age;
 
-// falsy: undefined, false, 0, null, NaN, ''
+    letMeIntroduceMyself() {
+        setTimeout(() => this.doSomethingImportant(), 1000);
+        return `Hello, my name is ${this.firstName},
+        I am ${this.age}`;
+    }
 
-console.log(person.age ?? '');
+    doSomethingImportant() {
+        console.log(`Hello from setTimeout: ${this.firstName}`);
+    }
 
-// console.log(
-//     person?.address?.city
-// );
+    // doSomethingImportant = () => {
+    //     console.log(`Hello from setTimeout: ${this.firstName}`);
+    // }
+}
+
+const person = new Person('Marek', 44);
+
+// doSomethingImportant = () => {
+//     console.log(`Hello from setTimeout: ${this.firstName}`);
+// }
+
+console.log(person.letMeIntroduceMyself());
+
+// function add(a, b) {
+//     // console.log(this);
+//     return a + b;
+// }
+//
+// console.log(add.apply(null, [1, 3]));
+// console.log(add.call(null, 1, 3));

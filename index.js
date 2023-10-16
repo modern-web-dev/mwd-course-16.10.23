@@ -1,28 +1,19 @@
-const myNumbers = [12, 34, 45, 78, 45];
+const firstNameElement = document.querySelector('#firstName');
+setTimeout(() => {
+    console.log('Now calling setTimeout handler...')
+    firstNameElement.value = 'James Bond';
+}, 1000);
+firstNameElement.setAttribute('value', 'Zdzisław');
+// console.log('Now setting prop...')
+firstNameElement.value = 'Czarek';
+console.log("Prop: ", firstNameElement.value);
+console.log("Attr: ", firstNameElement.getAttribute('value'));
+
+firstNameElement.addEventListener('input', function (event) {
+    console.log(event.target.value);
+})
 
 
-// map, filter, reduce
-const total = myNumbers
-    .map(addTax)
-    .filter(onlyGreaterThanTwenty)
-    .reduce((sum, myCurrentNumber) => sum + myCurrentNumber, 0);
+// data goes down
+// events go up
 
-console.log(total);
-
-let sum = 0;
-for (let i = 0; i < myNumbers.length; i++) {
-    const myCurrentNumber = addTax(myNumbers[i]);
-    if (onlyGreaterThanTwenty(myCurrentNumber)) {
-        sum += myCurrentNumber;
-    }
-}
-
-console.log(sum);
-
-function addTax(value) {
-    return value + 5;
-}
-
-function onlyGreaterThanTwenty(value) {
-    return value > 20;
-}

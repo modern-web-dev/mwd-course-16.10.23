@@ -1,36 +1,28 @@
-class Person {
-    constructor(firstName, age) {
-        this.firstName = firstName;
-        this.age = age;
-    }
+const myNumbers = [12, 34, 45, 78, 45];
 
-    letMeIntroduceMyself() {
-        setTimeout(() => this.doSomethingImportant(), 1000);
-        return `Hello, my name is ${this.firstName},
-        I am ${this.age}`;
-    }
 
-    doSomethingImportant() {
-        console.log(`Hello from setTimeout: ${this.firstName}`);
-    }
+// map, filter, reduce
+const total = myNumbers
+    .map(addTax)
+    .filter(onlyGreaterThanTwenty)
+    .reduce((sum, myCurrentNumber) => sum + myCurrentNumber, 0);
 
-    // doSomethingImportant = () => {
-    //     console.log(`Hello from setTimeout: ${this.firstName}`);
-    // }
+console.log(total);
+
+let sum = 0;
+for (let i = 0; i < myNumbers.length; i++) {
+    const myCurrentNumber = addTax(myNumbers[i]);
+    if (onlyGreaterThanTwenty(myCurrentNumber)) {
+        sum += myCurrentNumber;
+    }
 }
 
-const person = new Person('Marek', 44);
+console.log(sum);
 
-// doSomethingImportant = () => {
-//     console.log(`Hello from setTimeout: ${this.firstName}`);
-// }
+function addTax(value) {
+    return value + 5;
+}
 
-console.log(person.letMeIntroduceMyself());
-
-// function add(a, b) {
-//     // console.log(this);
-//     return a + b;
-// }
-//
-// console.log(add.apply(null, [1, 3]));
-// console.log(add.call(null, 1, 3));
+function onlyGreaterThanTwenty(value) {
+    return value > 20;
+}
